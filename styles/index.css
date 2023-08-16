@@ -1,0 +1,35 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+.dv {
+    margin: auto;
+    margin-top: 80px;
+    /* border: 1px solid black; */
+    height: 80px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+#gmailLogin {
+    background-color: lightgreen;
+    height: 60%;
+    width: 10%;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+#facebookLogin {
+    background-color: rgb(92, 92, 203);
+    height: 60%;
+    width: 10%;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}

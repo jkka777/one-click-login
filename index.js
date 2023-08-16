@@ -6,9 +6,6 @@ function statusChangeCallback(response) {
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
         testAPI();
-    } else {
-        // The person is not logged into your app or we are unable to tell.
-        document.getElementById('status').innerHTML = 'Please log into this app.';
     }
 }
 
@@ -20,7 +17,7 @@ function checkLoginState() {
 
 window.fbAsyncInit = () => {
     FB.init({
-        appId: '198579683010383',
+        appId: '198579683010383', // replace this with your facebook client app id
         cookie: true,
         xfbml: true,
         version: 'v17.0'
@@ -60,6 +57,8 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
 
 // Gmail Login Button Click Event
 document.getElementById('gmailLogin').addEventListener('click', () => {
+
+    //client id is your google oauth project credentials
 
     const gmailAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
         'client_id=113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com' +
