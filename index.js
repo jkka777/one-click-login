@@ -57,7 +57,6 @@ function testAPI() {
     FB.api('/me', function (response) {
         console.log('Successful login for: ' + response.name);
         localStorage.setItem("name", JSON.stringify(response.name));
-        localStorage.setItem("email", JSON.stringify(response.email));
         console.log(response);
         window.open('https://one-click-login.vercel.app/main.html')
     });
@@ -65,7 +64,7 @@ function testAPI() {
 
 // Facebook Login Button Click Event
 document.getElementById('facebookLogin').addEventListener('click', () => {
-    FB.login(function (response) {
+    /*FB.login(function (response) {
         if (response.authResponse) {
 
             const accessToken = response.authResponse.accessToken;
@@ -87,6 +86,7 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
         } else {
             console.log('User cancelled login or did not fully authorize.');
         }
-    });
+    });*/
+    checkLoginState()
 
 });
