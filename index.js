@@ -18,8 +18,7 @@ window.fbAsyncInit = function () {
 
 // Gmail Login Button Click Event
 document.getElementById('gmailLogin').addEventListener('click', function () {
-    // Open a new window to the Gmail authentication URL
-    // After successful authentication, move to the next page
+
     const gmailAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
         'client_id=113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com' +
         '&redirect_uri=https://one-click-login.vercel.app/main.html' +
@@ -32,10 +31,13 @@ document.getElementById('gmailLogin').addEventListener('click', function () {
 document.getElementById('facebookLogin').addEventListener('click', function () {
     FB.login(function (response) {
         if (response.authResponse) {
-            // User authenticated and granted permissions
-            // Move to the next page
+
         } else {
             console.log('User cancelled login or did not fully authorize.');
         }
+    });
+    FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+        console.log(response);
     });
 });
