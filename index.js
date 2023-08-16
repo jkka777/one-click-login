@@ -52,45 +52,19 @@ function testAPI() {
 
 // Facebook Login Button Click Event
 document.getElementById('facebookLogin').addEventListener('click', () => {
-    /*FB.login(function (response) {
-        if (response.authResponse) {
 
-            const accessToken = response.authResponse.accessToken;
-
-            //getting profile info using access token
-
-            FB.api('/me', function (profileResponse) {
-                if (profileResponse && !profileResponse.error) {
-
-                    const userName = profileResponse.name;
-                    const userEmail = profileResponse.email;
-
-                }
-
-            });
-
-            window.location.href = 'main.html';
-
-        } else {
-            console.log('User cancelled login or did not fully authorize.');
-        }
-    });*/
     checkLoginState();
 
 });
 
-let clientInfor = {
-    clientId: '113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com',
-    clientSecret: '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',
-    redirectUri: 'https://one-click-login.vercel.app/main.html'
-};
 
 // Gmail Login Button Click Event
 document.getElementById('gmailLogin').addEventListener('click', () => {
 
-    const scope = 'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile';
-
-    const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientInfor.clientId}&redirect_uri=${clientInfor.redirectUri}&scope=${scope}&response_type=code`;
-
-    window.open(authUrl, '_blank');
+    const gmailAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
+        'client_id=113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com' +
+        '&redirect_uri=https://one-click-login.vercel.app/main.html' +
+        '&response_type=token' +
+        '&scope=email%20profile';
+    window.open(gmailAuthUrl, '_blank');
 });
