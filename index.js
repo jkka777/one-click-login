@@ -75,8 +75,8 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
                     const userName = profileResponse.name;
                     const userEmail = profileResponse.email;
 
-                    localStorage.setItem("name", JSON.stringify("userName"));
-                    localStorage.setItem("email", JSON.stringify("userEmail"));
+                    localStorage.setItem("name", JSON.stringify(userName));
+                    localStorage.setItem("email", JSON.stringify(userEmail));
 
                 }
 
