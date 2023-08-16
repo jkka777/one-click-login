@@ -1,4 +1,23 @@
 
+function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+
+    if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        testAPI();
+    } else {
+        // The person is not logged into your app or we are unable to tell.
+        document.getElementById('status').innerHTML = 'Please log into this app.';
+    }
+}
+
+function checkLoginState() {
+    FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+    });
+}
+
 window.fbAsyncInit = () => {
     FB.init({
         appId: '198579683010383',
@@ -31,6 +50,15 @@ document.getElementById('gmailLogin').addEventListener('click', () => {
         '&scope=email%20profile';
     window.open(gmailAuthUrl, '_blank');
 });
+
+function testAPI() {
+    console.log('Welcome!  Fetching your information.... ');
+    FB.api('/me', function (response) {
+        console.log('Successful login for: ' + response.name);
+        document.getElementById('status').innerHTML =
+            'Thanks for logging in, ' + response.name + '!';
+    });
+}
 
 // Facebook Login Button Click Event
 document.getElementById('facebookLogin').addEventListener('click', () => {
