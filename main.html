@@ -11,7 +11,7 @@
 
     <div class="nav"></div>
     <div class="cont">
-        <h2>
+        <h2 id="user-details">
 
         </h2>
     </div>
@@ -21,8 +21,9 @@
 </html>
 <script>
 
-    let data = JSON.parse(localStorage.getItem("fb_val")) || [];
+    const userName = localStorage.getItem("name");
+    const userEmail = localStorage.getItem("email");
 
-    document.querySelector(".cont > h2").textContent = `Welcome ${data.userName}, you have successfully logged in using facebook;`
+    document.querySelector("#user-details").textContent = `Welcome ${userName}, you have successfully logged in using facebook;`
 
 </script>

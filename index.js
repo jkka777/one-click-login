@@ -51,7 +51,6 @@ document.getElementById('gmailLogin').addEventListener('click', () => {
     window.open(gmailAuthUrl, '_blank');
 });
 
-let arr = new Array(2);
 
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
@@ -73,13 +72,12 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
             FB.api('/me', { fields: 'name,email' }, function (profileResponse) {
                 if (profileResponse && !profileResponse.error) {
 
-                    let user = {
-                        userName: profileResponse.name,
-                        userEmail: profileResponse.email
-                    }
-                    arr.push(user);
+                    const userName = profileResponse.name;
+                    const userEmail = profileResponse.email;
 
-                    localStorage.setItem("fb_val", JSON.stringify(arr));
+                    localStorage.setItem("name", JSON.stringify("userName"));
+                    localStorage.setItem("email", JSON.stringify("userEmail"));
+
                 }
 
             });
