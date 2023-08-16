@@ -40,13 +40,14 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
             const accessToken = response.authResponse.accessToken;
 
             //getting profile info using access token
+
             FB.api('/me', { fields: 'id,name,email' }, function (profileResponse) {
                 if (profileResponse && !profileResponse.error) {
                     const userId = profileResponse.id;
                     const userName = profileResponse.name;
                     const userEmail = profileResponse.email;
 
-                    window.open('https://one-click-login.vercel.app/main.html', '_blank');
+                    // window.open('https://one-click-login.vercel.app/main.html', '_blank');
                 }
             });
 
