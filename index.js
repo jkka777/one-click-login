@@ -53,7 +53,7 @@ function testAPI() {
 // Facebook Login Button Click Event
 document.getElementById('facebookLogin').addEventListener('click', () => {
 
-    testAPI();
+    checkLoginState();
 
 });
 
