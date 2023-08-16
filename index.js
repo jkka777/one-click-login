@@ -40,18 +40,6 @@ window.fbAsyncInit = () => {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-// Gmail Login Button Click Event
-document.getElementById('gmailLogin').addEventListener('click', () => {
-
-    const gmailAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
-        'client_id=113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com' +
-        '&redirect_uri=https://one-click-login.vercel.app/main.html' +
-        '&response_type=token' +
-        '&scope=email%20profile';
-    window.open(gmailAuthUrl, '_blank');
-});
-
-
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function (response) {
@@ -87,6 +75,65 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
             console.log('User cancelled login or did not fully authorize.');
         }
     });*/
-    checkLoginState()
+    checkLoginState();
+
+});
+
+let clientInfor = {
+    clientId: '113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com',
+    clientSecret: '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',
+    redirectUri: 'https://one-click-login.vercel.app/main.html'
+};
+
+// Gmail Login Button Click Event
+document.getElementById('gmailLogin').addEventListener('click', () => {
+
+    const gmailAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
+        'client_id=113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com' +
+        '&redirect_uri=https://one-click-login.vercel.app/main.html' +
+        '&response_type=token' +
+        '&scope=email%20profile&response_type=code';
+
+    window.open(gmailAuthUrl, '_blank');
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const authorizationCode = urlParams.get('code');
+
+    fetch('https://oauth2.googleapis.com/token', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: `code = ${authorizationCode}& client_id=${clientInfor.clientId}& client_secret=${clientInfor.clientSecret}& redirect_uri=${clientInfor.redirectUri}& grant_type=authorization_code`
+    })
+        .then(response => response.json())
+        .then(data => {
+            const accessToken = data.access_token;
+
+            console.log('Access Token:', accessToken);
+
+
+            fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const userName = data.name;
+                    const userEmail = data.email;
+
+                    localStorage.setItem('gmailUserName', userName);
+                    localStorage.setItem('gmailUserEmail', userEmail);
+
+                })
+                .catch(error => {
+                    console.error('Error fetching user information:', error);
+                });
+
+        })
+        .catch(error => {
+            console.error('Error exchanging authorization code for access token:', error);
+        });
 
 });
