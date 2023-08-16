@@ -93,45 +93,4 @@ document.getElementById('gmailLogin').addEventListener('click', () => {
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientInfor.clientId}&redirect_uri=${clientInfor.redirectUri}&scope=${scope}&response_type=code`;
 
     window.open(authUrl, '_blank');
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const authorizationCode = urlParams.get('code');
-
-    fetch('https://oauth2.googleapis.com/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: `code = ${authorizationCode}& client_id=${clientInfor.clientId}& client_secret=${clientInfor.clientSecret}& redirect_uri=${clientInfor.redirectUri}& grant_type=authorization_code`
-    })
-        .then(response => response.json())
-        .then(data => {
-            const accessToken = data.access_token;
-
-            console.log('Access Token:', accessToken);
-
-
-            fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`
-                }
-            })
-                .then(response => response.json())
-                .then(data => {
-                    const userName = data.name;
-                    const userEmail = data.email;
-
-                    localStorage.setItem('gmailUserName', userName);
-                    localStorage.setItem('gmailUserEmail', userEmail);
-
-                })
-                .catch(error => {
-                    console.error('Error fetching user information:', error);
-                });
-
-        })
-        .catch(error => {
-            console.error('Error exchanging authorization code for access token:', error);
-        });
-
 });
