@@ -69,7 +69,7 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
 
             //getting profile info using access token
 
-            FB.api('/me', { fields: 'name,email' }, function (profileResponse) {
+            FB.api('/me', function (profileResponse) {
                 if (profileResponse && !profileResponse.error) {
 
                     const userName = profileResponse.name;
