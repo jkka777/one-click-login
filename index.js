@@ -72,9 +72,12 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
 
             FB.api('/me', { fields: 'name,email' }, function (profileResponse) {
                 if (profileResponse && !profileResponse.error) {
-                    const userName = profileResponse.name;
-                    const userEmail = profileResponse.email;
-                    arr[0] = userName; arr[1] = userEmail;
+
+                    let user = {
+                        userName: profileResponse.name,
+                        userEmail: profileResponse.email
+                    }
+                    arr.push(user);
 
                     localStorage.setItem("fb_val", JSON.stringify(arr));
                 }
