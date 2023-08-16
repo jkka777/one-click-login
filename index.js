@@ -59,6 +59,8 @@ function testAPI() {
     });
 }
 
+let arr = new Array(2);
+
 // Facebook Login Button Click Event
 document.getElementById('facebookLogin').addEventListener('click', () => {
     FB.login(function (response) {
@@ -68,15 +70,18 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
 
             //getting profile info using access token
 
-            FB.api('/me', { fields: 'id,name,email' }, function (profileResponse) {
+            FB.api('/me', { fields: 'name,email' }, function (profileResponse) {
                 if (profileResponse && !profileResponse.error) {
-                    const userId = profileResponse.id;
                     const userName = profileResponse.name;
                     const userEmail = profileResponse.email;
+                    arr[0] = userName; arr[1] = userEmail;
 
-                    // window.open('https://one-click-login.vercel.app/main.html', '_blank');
+                    localStorage.setItem("fb_val", JSON.stringify(arr));
                 }
+
             });
+
+            window.location.href = 'main.html';
 
         } else {
             console.log('User cancelled login or did not fully authorize.');

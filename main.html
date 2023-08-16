@@ -12,7 +12,7 @@
     <div class="nav"></div>
     <div class="cont">
         <h2>
-            Hello there you have successfully logged in!
+
         </h2>
     </div>
     <div class="foot"></div>
@@ -21,5 +21,8 @@
 </html>
 <script>
 
-    
+    let data = JSON.parse(localStorage.getItem("fb_val")) || [];
+
+    document.querySelector(".cont > h2").textContent = `Welcome ${data[0]}, you have successfully logged in using facebook;`
+
 </script>
