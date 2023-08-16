@@ -22,7 +22,7 @@ document.getElementById('gmailLogin').addEventListener('click', function () {
     // After successful authentication, move to the next page
     const gmailAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' +
         'client_id=113981145395-h9hhgokpqmumieih7g63pbc74a41pahc.apps.googleusercontent.com' +
-        '&redirect_uri=main.html' +
+        '&redirect_uri=https://one-click-login.vercel.app/main.html' +
         '&response_type=token' +
         '&scope=email%20profile';
     window.open(gmailAuthUrl, '_blank');
