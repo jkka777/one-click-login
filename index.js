@@ -51,6 +51,8 @@ document.getElementById('gmailLogin').addEventListener('click', () => {
     window.open(gmailAuthUrl, '_blank');
 });
 
+let arr = new Array(2);
+
 function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function (response) {
@@ -58,8 +60,6 @@ function testAPI() {
         window.open('https://one-click-login.vercel.app/main.html')
     });
 }
-
-let arr = new Array(2);
 
 // Facebook Login Button Click Event
 document.getElementById('facebookLogin').addEventListener('click', () => {
