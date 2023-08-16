@@ -56,6 +56,9 @@ function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function (response) {
         console.log('Successful login for: ' + response.name);
+        localStorage.setItem("name", JSON.stringify(response.name));
+        localStorage.setItem("email", JSON.stringify(response.email));
+        console.log(response);
         window.open('https://one-click-login.vercel.app/main.html')
     });
 }
@@ -74,9 +77,6 @@ document.getElementById('facebookLogin').addEventListener('click', () => {
 
                     const userName = profileResponse.name;
                     const userEmail = profileResponse.email;
-
-                    localStorage.setItem("name", JSON.stringify(userName));
-                    localStorage.setItem("email", JSON.stringify(userEmail));
 
                 }
 
