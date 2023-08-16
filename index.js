@@ -92,7 +92,7 @@ document.getElementById('gmailLogin').addEventListener('click', () => {
 
     const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientInfor.clientId}&redirect_uri=${clientInfor.redirectUri}&scope=${scope}&response_type=code`;
 
-    window.location.href = authUrl;
+    window.open(authUrl, '_blank');
 
     const urlParams = new URLSearchParams(window.location.search);
     const authorizationCode = urlParams.get('code');
